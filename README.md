@@ -25,9 +25,9 @@ First folders are numbered for each installation step (Look at the tutorial for 
 
 - ESP32 PID : In this folder you can found the .ino file for the ESP32 PID and the files to upload on the board for the webserver.
 
-- Gerbers : gerbers file to make the 4 layers PCB (choose 1 oz for each layer)
+- Gerbers : gerbers files to make the 4 layers PCB (choose 1 oz for each layer)
 
-- Old ASCOM Platform : This is the ASCOM platform version 6.2 that works with this camera, I don't try newer versions.
+- Old ASCOM Platform : This is the ASCOM platform version 6.2 that works with this camera, I  haven't tried newer versions.
 
 - Parts : Here you have the list of components and screen captures to see what parts you need. Also some diagrams.
 
@@ -36,9 +36,9 @@ First folders are numbered for each installation step (Look at the tutorial for 
 - Wiring diagram : The corrected wiring diagram including the new ESP32 PID and the new cooling diagram.
 
 
-SSID for PID : Cam87 Cooling
-Password : Value of the speed of the photons that reach your nice camera, in m/s ;-)
-IP for access : 192.168.4.1
+	SSID for PID : Cam87 Cooling
+	Password : Value of the speed of the photons that reach your nice camera, in m/s ;-)
+	IP for access : 192.168.4.1
 
 FTDI : https://ftdichip.com/
 Astroccd : http://astroccd.org/
