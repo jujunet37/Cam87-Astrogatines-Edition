@@ -1,0 +1,509 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"> 
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="highcharts.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      color: #059e8a;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    .warning {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      font-weight: bold;
+      display: none;
+      text-align: center;
+      width: 100%;
+      max-width: 800px;
+    }
+
+    .warning.condensation {
+      background-color: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+    }
+
+    .warning.icing {
+      background-color: #cce5ff;
+      color: #004085;
+      border: 1px solid #b8daff;
+    }
+
+    .warning.sensor-break {
+      background-color: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    body.night-mode .warning.condensation {
+      background-color: #332900;
+      color: #ffcc00;
+      border-color: #665200;
+    }
+
+    body.night-mode .warning.icing {
+      background-color: #001a33;
+      color: #66b3ff;
+      border-color: #003366;
+    }
+
+    body.night-mode .warning.sensor-break {
+      background-color: #330000;
+      color: #ff6666;
+      border-color: #660000;
+    }
+
+    h3 {
+      font-size: 1.8rem;
+      margin-top: 20px;
+      color: #333;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .units {
+      font-size: 1.0rem;
+    }
+
+    .ds-labels {
+      font-size: 1.2rem;
+      padding-bottom: 15px;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .card-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin: 10px;
+      padding: 20px;
+      width: 90%;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.02);
+    }
+
+    .chart-container {
+      width: 100%;
+      height: 400px;
+    }
+
+    .zoom-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 15px;
+      flex-wrap: wrap;
+      width: 100%;
+    }
+
+    .zoom-button {
+      padding: 8px 12px;
+      background-color: #059e8a;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-size: 0.85rem;
+      min-width: 50px;
+    }
+
+    .zoom-button:hover {
+      background-color: #048271;
+    }
+
+    body.night-mode .zoom-button {
+      background-color: #ff0000;
+      color: #330000;
+    }
+
+    body.night-mode .zoom-button:hover {
+      background-color: #cc0000;
+    }
+
+    .control-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      margin: 20px 0;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      border: 2px solid #059e8a;
+      border-radius: 4px;
+      margin: 5px 10px;
+      width: 80px;
+      text-align: center;
+    }
+
+    input[type="number"]:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+
+    input[type="submit"], button {
+      padding: 10px 20px;
+      border: 2px solid #059e8a;
+      border-radius: 4px;
+      margin: 10px 5px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    input[type="submit"] {
+      background-color: #059e8a;
+      color: white;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #048271;
+    }
+
+    /* Custom checkbox styling */
+    input[type="checkbox"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid #059e8a;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      vertical-align: middle;
+      position: relative;
+      transition: all 0.2s;
+      margin-left: 10px;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: #059e8a;
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: "✓";
+      position: absolute;
+      color: white;
+      font-size: 14px;
+      left: 2px;
+      top: -2px;
+    }
+
+    /* Night mode styles */
+    body.night-mode {
+      background-color: #330000;
+      color: #ff0000;
+    }
+
+    body.night-mode h2,
+    body.night-mode h3 {
+      color: #ff0000;
+    }
+
+    body.night-mode input[type="number"],
+    body.night-mode input[type="submit"],
+    body.night-mode button {
+      background-color: #440000;
+      color: #ff0000;
+      border: 2px solid #ff0000;
+    }
+
+    body.night-mode .card {
+      background: #550000;
+      color: #ff0000;
+      box-shadow: 0 2px 10px rgba(255, 0, 0, 0.1);
+    }
+
+    /* Night mode checkbox styles */
+    body.night-mode input[type="checkbox"] {
+      border-color: #ff0000;
+      background-color: #330000;
+    }
+
+    body.night-mode input[type="checkbox"]:checked {
+      background-color: #ff0000;
+    }
+
+    body.night-mode input[type="checkbox"]:checked::after {
+      color: #330000;
+    }
+
+    /* Highcharts night mode styles */
+    body.night-mode .highcharts-background {
+      fill: #330000;
+    }
+
+    body.night-mode .highcharts-container {
+      background-color: transparent !important;
+    }
+
+    body.night-mode .highcharts-axis-line,
+    body.night-mode .highcharts-tick {
+      stroke: #ff0000 !important;
+    }
+
+    body.night-mode .highcharts-legend-item text {
+      fill: #ff0000 !important;
+    }
+
+    body.night-mode .highcharts-title {
+      fill: #ff0000 !important;
+      color: #ff0000 !important;
+    }
+
+    body.night-mode .highcharts-tooltip text {
+      fill: #ff0000 !important;
+    }
+
+    body.night-mode .highcharts-tooltip .highcharts-header {
+      color: #ff0000 !important;
+    }
+
+    body.night-mode .highcharts-tooltip-box {
+      fill: #330000;
+      stroke: #ff0000;
+    }
+
+    /* Hide HTML chart title */
+    .card-title {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 2rem;
+      }
+      
+      h3 {
+        font-size: 1.5rem;
+      }
+      
+      .card {
+        width: 95%;
+        padding: 15px;
+      }
+      
+      .zoom-button {
+        padding: 6px 8px;
+        font-size: 0.75rem;
+        min-width: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Cam87 Cooling</h2>
+    <div id="condensation-warning" class="warning condensation" style="display:none;">Possible condensation!</div>
+    <div id="icing-warning" class="warning icing" style="display:none;">Possible icing!</div>
+    <div id="sensor-break-warning" class="warning sensor-break" style="display:none;">Possible sensor break!</div>
+    
+    <p>
+      <i class="fas fa-thermometer-half" style="color:#059e8a;"></i> 
+      <span class="ds-labels">CCD Probe Temperature : </span> 
+      <span id="temperaturec">%TEMPERATUREC%</span>
+      <sup class="units">&deg;C</sup><br>
+      <i class="fas fa-thermometer-half" style="color:#059e8a;"></i> 
+      <span class="ds-labels">Case Temp/Humidity : </span> 
+      <span id="temperature">%TEMPERATURE%</span>
+      <sup class="units">&deg;C</sup>
+      <span class="ds-labels"> / </span>
+      <span id="humidity">%HUMIDITY%</span>
+      <sup class="units">&percnt;</sup><br>
+      <i class="fas fa-thermometer-half" style="color:#059e8a;"></i> 
+      <span class="ds-labels">Dew Point : </span> 
+      <span id="DewP">%DewP%</span>
+      <sup class="units">&deg;C</sup>
+    </p>
+
+    <h3>Cooling Control</h3>
+    <form class="control-form" action="/get" onsubmit="return validateForm()">
+      <div class="form-group">
+        <label for="threshold_input">Enter Setpoint:</label>
+        <input type="number" step="0.1" id="threshold_input" name="threshold_input" value="%THRESHOLD%" required>
+      </div>
+      <div class="form-group">
+        <label>Toggle Cooling ON/OFF:</label>
+        <input type="checkbox" name="enable_arm_input" value="true" %ENABLE_ARM_INPUT%>
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Send to Cam87">
+        <button type="button" id="toggleNightMode">Toggle Night Mode</button>
+      </div>
+    </form>
+
+    <p>
+      <i class="fas fa-thermometer-half" style="color:#059e8a;"></i> 
+      <span class="ds-labels">Set Point : </span> 
+      <span id="inputMessage">%inputMessage%</span>
+      <sup class="units">&deg;C</sup>
+      <span class="ds-labels">Cooling set to </span> 
+      <span id="inputMessage2">%coolingstate%</span> <br>
+    </p>
+
+    <div class="content">
+      <div class="card-grid">
+        <div class="card">
+          <div id="chart-temperature" class="chart-container"></div>
+          <div class="zoom-buttons">
+            <button class="zoom-button" data-minutes="15">15min</button>
+            <button class="zoom-button" data-minutes="30">30min</button>
+            <button class="zoom-button" data-minutes="60">1h</button>
+            <button class="zoom-button" data-minutes="120">2h</button>
+            <button class="zoom-button" data-minutes="180">3h</button>
+            <button class="zoom-button" data-minutes="360">6h</button>
+            <button class="zoom-button" data-minutes="540">9h</button>
+            <button class="zoom-button" data-minutes="720">12h</button>
+	    <button class="zoom-button" data-minutes="0">Show All</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+
+  <script>
+    document.getElementById("toggleNightMode").addEventListener("click", function() {
+      const isNightMode = document.body.classList.toggle("night-mode");
+      document.querySelector("input[name='threshold_input']").setCustomValidity("");
+      
+      if (typeof updateChartColors === 'function' && Highcharts.charts.length > 0) {
+        updateChartColors(isNightMode);
+        Highcharts.charts[0].reflow();
+      }
+    });
+
+    function validateForm() {
+      const setpointInput = document.querySelector("input[name='threshold_input']");
+      if (!setpointInput.value) {
+        setpointInput.setCustomValidity("Please enter a value");
+        return false;
+      }
+      setpointInput.setCustomValidity("");
+      return true;
+    }
+
+    function checkWarnings() {
+      const tempC = parseFloat(document.getElementById("temperaturec").textContent) || 0;
+      const dewP = parseFloat(document.getElementById("DewP").textContent) || 0;
+      
+      // Reset all warnings
+      document.getElementById('condensation-warning').style.display = 'none';
+      document.getElementById('icing-warning').style.display = 'none';
+      document.getElementById('sensor-break-warning').style.display = 'none';
+      
+      // Check for condensation/icing
+      if (Math.abs(tempC - dewP) < 0.5) { // Small threshold for measurement variations
+        if (tempC > 0) {
+          document.getElementById('condensation-warning').style.display = 'block';
+        } else {
+          document.getElementById('icing-warning').style.display = 'block';
+        }
+      }
+      
+      // Check for sensor break
+      if (tempC < -20) {
+        document.getElementById('sensor-break-warning').style.display = 'block';
+      }
+    }
+
+    // Generic update function
+    function updateSensor(endpoint, elementId, callback) {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById(elementId).innerHTML = this.responseText;
+          if (callback) callback();
+        }
+      };
+      xhttp.open("GET", endpoint, true);
+      xhttp.send();
+    }
+
+    // Update all sensors
+    function updateAllSensors() {
+      updateSensor("/temperaturec", "temperaturec", checkWarnings);
+      updateSensor("/temperature", "temperature");
+      updateSensor("/humidity", "humidity");
+      updateSensor("/DewP", "DewP", checkWarnings);
+      updateSensor("/inputMessage", "inputMessage");
+      updateSensor("/coolingstate", "inputMessage2");
+    }
+
+    // Set up periodic updates
+    setInterval(updateAllSensors, 2000);
+    
+    // Initial update when page loads
+    window.addEventListener('load', function() {
+      updateAllSensors();
+      checkWarnings();
+    });
+  </script>
+</body>
+</html>

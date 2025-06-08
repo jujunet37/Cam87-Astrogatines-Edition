@@ -1,0 +1,15 @@
+Tests @ 23°C
+
+TES1-12701
+
+1.18A. (fan : 240mA) -> 0.94A
+
+-0.5°C Delta = 23°C (Cam OFF) Box Temp : 20°C
+4.0°C Delta = 19°C (Cam ON) Box Temp : 30°C
+
+TEC2-19003
+
+2.24A. (fan : 240mA) -> 2.00A
+
+-5.5°C Delta = 29°C (Cam OFF) Box Temp : 18°C
+-1°C Delta = 24°C (Cam ON) Box Temp : 30°C

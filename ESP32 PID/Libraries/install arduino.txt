@@ -1,0 +1,24 @@
+Install Arduino version 2.2.1 or later
+
+Install the folowing libraries using libraries manager :
+
+OneWire par Paul Stoffregen
+DallasTemperature par Miles Burton
+DHT sensor Library
+adafruit unified sensor
+PID by Brett Beauregard
+
+Install LittleFS Uploader Plugin :
+
+Copy the VSIX file to :
+
+C:\Users\<username>\.arduinoIDE\plugins\ (créer le dossier plugin si inexistant)
+Restart the IDE.
+
+install zip files ESPAsyncWebServer-master and AsyncTCP-master :
+
+Copy unzipped libraries in : C:\Users\username\OneDrive\Documents\Arduino\libraries
+
+For upload files in LittleFS : [Ctrl] + [Shift] + [P], then "Upload LittleFS to Pico/ESP8266/ESP32".
+Files to upload must be in a "data" folder besides the .ino file.
+Select board (tools->boards) and COM port (tools->port)

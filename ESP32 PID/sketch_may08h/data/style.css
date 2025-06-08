@@ -1,0 +1,322 @@
+/* Complete project details: https://randomnerdtutorials.com/esp32-plot-readings-charts-multiple/ */
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-block;
+  text-align: center;
+}
+h1 {
+  font-size: 1.8rem;
+  color: white;
+}
+p {
+  font-size: 1.4rem;
+}
+.topnav {
+  overflow: hidden;
+  background-color: #0A1128;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h2 {
+  font-size: 2.5rem;
+  color: #059e8a;
+  margin-bottom: 10px;
+}
+h3 {
+  font-size: 1.8rem;
+  margin-top: 20px;
+  color: #059e8a;
+}
+.units {
+  font-size: 1.0rem;
+}
+.ds-labels {
+  font-size: 1.2rem;
+  padding-bottom: 15px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+.card-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: scale(1.05);
+}
+.chart-container {
+  width: 100%;
+  height: 400px;
+  margin: 0 auto;
+}
+input[type="number"], input[type="submit"], button {
+  padding: 10px;
+  border: 2px solid #059e8a;
+  border-radius: 4px;
+  margin: 5px;
+}
+input[type="number"]:focus {
+  border-color: #007bff;
+}
+input[type="submit"] {
+  background-color: #059e8a;
+  color: white;
+  cursor: pointer;
+  transition: none;
+}
+input[type="submit"]:hover {
+  background-color: #059e8a;
+}
+
+/* Custom Checkbox */
+.checkbox-container {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  margin: 10px 0;
+  cursor: pointer;
+  user-select: none;
+}
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #059e8a;
+  border-radius: 4px;
+}
+.checkbox-container:hover input ~ .checkmark {
+  background-color: #f1f1f1;
+}
+.checkbox-container input:checked ~ .checkmark {
+  background-color: #059e8a;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+.checkbox-container .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Warning Styles */
+.warning {
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  animation: pulse 2s infinite;
+  max-width: 80%;
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* TIME RANGE BUTTONS - FINAL WORKING SOLUTION */
+.time-range-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px 0;
+  margin: 15px 0;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar in IE/Edge */
+}
+
+.time-range-wrapper::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome/Safari */
+}
+
+.time-range {
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0 5px;
+  margin: 0 auto;
+}
+
+.time-range button {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 3px;
+  font-size: 0.9rem;
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 50px;
+  text-align: center;
+  position: relative;
+  top: 0;
+  transition: all 0.2s ease;
+}
+
+.time-range button:hover {
+  background: #e0e0e0;
+  top: -1px;
+}
+
+/* Night Mode Styles */
+body.night-mode {
+  background-color: #330000;
+  color: #ff0000;
+}
+body.night-mode h2,
+body.night-mode h3 {
+  color: #ff0000;
+}
+body.night-mode input[type="number"],
+body.night-mode input[type="submit"],
+body.night-mode button {
+  background-color: #440000;
+  color: #ff0000;
+  border: 2px solid #ff0000;
+}
+body.night-mode .card {
+  background: #550000;
+  color: #ff0000;
+}
+body.night-mode .checkmark {
+  background-color: #330000;
+  border: 2px solid #ff0000;
+}
+body.night-mode .checkbox-container:hover input ~ .checkmark {
+  background-color: #440000;
+}
+body.night-mode .checkbox-container input:checked ~ .checkmark {
+  background-color: #ff0000;
+}
+body.night-mode .checkmark:after {
+  border-color: #330000;
+}
+body.night-mode .warning {
+  background: #550000;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+  text-shadow: 0 0 5px rgba(255,0,0,0.5);
+}
+
+/* Night Mode Time Range Buttons */
+body.night-mode .time-range button {
+  background: #330000;
+  color: #ff0000;
+  border: 1px solid #ff0000;
+}
+
+body.night-mode .time-range button:hover {
+  background: #550000;
+}
+
+body.night-mode .highcharts-background {
+  fill: #330000;
+}
+body.night-mode .highcharts-container {
+  background-color: transparent !important;
+}
+body.night-mode .highcharts-axis-line,
+body.night-mode .highcharts-tick {
+  stroke: #ff0000 !important;
+}
+body.night-mode .highcharts-legend-item text {
+  fill: #ff0000 !important;
+}
+body.night-mode .highcharts-title {
+  fill: #ff0000 !important;
+  color: #ff0000 !important;
+}
+body.night-mode .highcharts-tooltip text {
+  fill: #ff0000 !important;
+}
+body.night-mode .highcharts-tooltip .highcharts-header {
+  color: #ff0000 !important;
+}
+body.night-mode .highcharts-tooltip-box {
+  fill: #330000;
+  stroke: #ff0000;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  .time-range-wrapper {
+    padding: 8px 0;
+  }
+  
+  .time-range button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: 45px;
+    margin: 0 2px;
+  }
+  .card {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .time-range button {
+    padding: 5px 8px;
+    font-size: 0.75rem;
+    min-width: 40px;
+  }
+}
