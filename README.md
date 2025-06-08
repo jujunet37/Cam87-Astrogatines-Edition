@@ -1,6 +1,6 @@
 # Cam87-Astrogatines-Edition
 
-## This repository contains all files needed to build the astronomy Cam87 color camera with a APSC CCD sensor. The resolution of this camera is 6M pixels (3000x2000). Original wiring diagram was made by grim from Astroclub.kiev.ua.
+## This repository contains all files needed to build the astronomy Cam87 color camera with a APSC CCD sensor. The resolution of this camera is 6M pixels (3000x2000). Original wiring diagram was made by grim from Astroclub.kiev.ua. Budget for this camera is about 280€ / 320$
 
 ## Here are the implementation I made :
 
