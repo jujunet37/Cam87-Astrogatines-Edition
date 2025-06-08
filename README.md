@@ -36,9 +36,9 @@ First folders are numbered for each installation step (Look at the tutorial for 
 - Wiring diagram : The corrected wiring diagram including the new ESP32 PID and the new cooling diagram.
 
 
-	SSID for PID : Cam87 Cooling
-	Password : Value of the speed of the photons that reach your nice camera, in m/s ;-)
-	IP for access : 192.168.4.1
+	- SSID for PID : Cam87 Cooling
+	- Password : Value of the speed of the photons that reach your nice camera, in m/s ;-)
+	- IP for access : 192.168.4.1
 
 FTDI : https://ftdichip.com/
 Astroccd : http://astroccd.org/
