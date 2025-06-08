@@ -1,0 +1,57 @@
+Filtre UV/IR cut 2 inches : SVBONY 2" Filter, UV/IR Cut : 23.98€
+Peltier TEC2-19003 30*30*6.0 : 11.09€
+Capteur : CCD Sensor for Nikon D70 Image Replacement Repair Part New : 18.32€
+ESP32 D1 Mini ESP32 WIFI Bluetooth Development Board CH9102 With ESP-WROOM-32 Module Type-C USB Interface For Arduino : 6.55€
+
+Electronics: €60.85
+Hammond Case: €21.17
+PCB 1oz/0.5oz Power Supply, 1oz/1oz Logic: €36.25/5 = €7.25
+
+Port Parts:
+
+O-ring 44.17*1.78: €0.60
+Silicone Disc 60mmx2mm: €3.18
+15mm M48 Bushing: €18.30
+M52/M48 Bushing + Cap: €9
+M48/M42 Bushing: €3.26
+
+Heat Sink: €18.59
+Springs: see details
+
+PU Glue: €6.09
+Cold Finger Seals: €1.10
+Machined Cold Finger: €46
+3D Printing: €14.68
+Fan : use again
+
+Screws: €6.54
+
+Details:
+M2.5 Nuts: 8: €0.21
+M2.5 Flat Head Bolts, 6mm: 2: €0.10
+M2.5 Round Head Bolts, 8mm: 2: €0.10
+M2.5 Flat Head Bolts, 10mm: 4: €0.16
+M2.5 Flat Head Bolts, 16mm: 2: €0.10
+
+M3 Nuts: 10: €0.21
+M3 Flat Head Bolts, 6mm: 11: €0.46
+M3 Flat Head Bolts, 10mm: 4: €0.20
+M3 Washers, 8mm, 0.8mm thick: 8: €0.20
+M3 Spacer, 4mm: 11: €1.51
+M3 Spacer, 15mm: 4: €0.54
+
+M4 Nuts: 8: €0.48
+M4 Flat Head Bolts: 22mm: 4: €0.47
+M4 Flat Head Bolts: 40mm: 4: €0.66
+
+Springs: 6mm diameter, 0.6mm wire, 15mm length: 4: €0.54
+Springs: 5mm diameter, 0.4mm wire, 5mm length: 4: €0.60
+
+Total: €276
+
+Optional:
+
+M48 TILT Ring: €28.31
+M48 Male -> EOS Adapter: €28.39
+
+
