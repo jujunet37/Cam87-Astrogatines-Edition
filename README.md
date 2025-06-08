@@ -7,6 +7,7 @@
 - Keep gastight Hammond aluminium enclosure for best low humidity performance and interference shield.
 - Power board with all high frequency components are outside the metal box.
 - New PCB checked with 4 layers. All logic components on the back side of the sensor side, 3 layers of tracks and a inner full copper plane for best grounding.
+- New tiny Mosfet AO4410 that can go up to 18A, tracks are sized for 3.5A max, no more heating mosfet.
 - New PID controlled by an ESP32 including a webserver and a new webapp ! Access to sensor and case temperature, box humidity and a temperature graph with your phone or a computer (wifi connexion).
 - New design with a aluminium cold finger pressed against the metal box with a 3D printed part. No machining anymore, the .step file is inclued to let it jlccnc do the job !
 - Stl files provided for power board holder and enclosure with ESP32 location. Black sensor mask, Cold finger insulator. I provided also a shim to help drilling the lid at the right place.
@@ -25,7 +26,7 @@ First folders are numbered for each installation step (Look at the tutorial for 
 
 - ESP32 PID : In this folder you can found the .ino file for the ESP32 PID and the files to upload on the board for the webserver.
 
-- Gerbers : gerbers files to make the 4 layers PCB (choose 1 oz for each layer)
+- Gerbers : gerbers files to make the 4 layers PCB (choose 1oz for each layer for cam pcb and 1oz external 0.5oz inner for power board)
 
 - Old ASCOM Platform : This is the ASCOM platform version 6.2 that works with this camera, I  haven't tried newer versions.
 
