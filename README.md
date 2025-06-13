@@ -41,6 +41,11 @@ First folders are numbered for each installation step (Look at the tutorial for 
 	- Password : Value of the speed of the photons that reach your nice camera, in m/s ;-)
 	- IP for access : 192.168.4.1
 
+YOUTUBE TUTORIALS !
+
+English : https://www.youtube.com/watch?v=FVaMk6Fg4kI
+French : https://www.youtube.com/watch?v=qr7sxIyBGCc
+
 FTDI : https://ftdichip.com/
 Astroccd : http://astroccd.org/
 Ukrainian Astropolis topic : https://www.astroclub.kiev.ua/forum/index.php?PHPSESSID=su8vh9h1n0l7lrnate4rmb50v5&topic=28929.0
