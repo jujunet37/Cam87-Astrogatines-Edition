@@ -52,7 +52,7 @@ Ukrainian Astropolis topic : https://www.astroclub.kiev.ua/forum/index.php?PHPSE
 
 ## UPDATE 08/07/2025 :
 
-- 3D Parts corrected :
-Sensor mask : removed weird cut
-Powerboard Holder : corrected to let the board fit correctly
-Powerboard holder lid : Back corrected for PCB and ESP32 chamber resized.
+3D Parts corrected :
+- Sensor mask : removed weird cut
+- Powerboard Holder : corrected to let the board fit correctly
+- Powerboard holder lid : Back corrected for PCB and ESP32 chamber resized.
