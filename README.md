@@ -49,3 +49,10 @@ French : https://www.youtube.com/watch?v=qr7sxIyBGCc
 FTDI : https://ftdichip.com/
 Astroccd : http://astroccd.org/
 Ukrainian Astropolis topic : https://www.astroclub.kiev.ua/forum/index.php?PHPSESSID=su8vh9h1n0l7lrnate4rmb50v5&topic=28929.0
+
+## UPDATE 08/07/2025 :
+
+- 3D Parts corrected :
+Sensor mask : removed weird cut
+Powerboard Holder : corrected to let the board fit correctly
+Powerboard holder lid : Back corrected for PCB and ESP32 chamber resized.
